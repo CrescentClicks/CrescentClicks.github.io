@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arfat Ahmad — Digital Marketing Expert</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* ── RESET & BASE ───────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --forest:   #0F3D2E;
+    --emerald:  #1A6645;
+    --green:    #2D8653;
+    --sage:     #52B788;
+    --mint:     #B7E4C7;
+    --pale:     #EEF8F2;
+    --gold:     #D4920A;
+    --gold-lt:  #FFF3CC;
+    --cream:    #FAFAF7;
+    --white:    #FFFFFF;
+    --ink:      #0D1F17;
+    --mid:      #3A5A46;
+    --muted:    #6B8C77;
+    --border:   #C8DFD0;
+    --blue:     #1B6CA8;
+    --purple:   #6B3FA0;
+    --red:      #C0392B;
+    --teal:     #0E8C7A;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--mint); color: var(--forest); }
+
+  /* ── SCROLLBAR ─────────────────────────────────────────────────── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--pale); }
+  ::-webkit-scrollbar-thumb { background: var(--sage); border-radius: 3px; }
+
+  /* ── REVEAL ANIMATION ──────────────────────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── NAV ────────────────────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 48px;
+    background: rgba(15,61,46,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(82,183,136,0.2);
+  }
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; color: var(--white); letter-spacing: 0.02em;
+  }
+  .nav-brand span { color: var(--sage); }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.7); text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--sage); }
+
+  /* ── HERO ───────────────────────────────────────────────────────── */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #D8F3DC 0%, #B7E4C7 40%, #95D5B2 70%, #74C69D 100%);
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 64px 120px;
+  }
+  .hero-orb {
+    position: absolute; border-radius: 50%;
+    pointer-events: none;
+  }
+  .orb-1 { width: 500px; height: 500px; right: -80px; top: -80px;
+    background: radial-gradient(circle, rgba(82,183,136,0.5) 0%, transparent 70%); }
+  .orb-2 { width: 300px; height: 300px; right: 120px; bottom: 60px;
+    background: radial-gradient(circle, rgba(45,134,83,0.3) 0%, transparent 70%); }
+  .orb-3 { width: 200px; height: 200px; left: -40px; bottom: 100px;
+    background: radial-gradient(circle, rgba(183,228,199,0.6) 0%, transparent 70%); }
+  .hero-noise {
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.6;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(15,61,46,0.12); border: 1px solid rgba(15,61,46,0.25);
+    padding: 6px 16px; border-radius: 100px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+    color: var(--forest); text-transform: uppercase; margin-bottom: 28px;
+    backdrop-filter: blur(6px);
+  }
+  .hero-tag::before { content:''; width:6px;height:6px;background:var(--emerald);border-radius:50%; animation: pulse 1.8s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(1.4)} }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(56px, 8vw, 96px);
+    font-weight: 900; line-height: 0.95;
+    color: var(--forest);
+    letter-spacing: -0.02em;
+    margin-bottom: 18px;
+    white-space: nowrap;
+  }
+  .hero-name em { font-style: italic; color: var(--emerald); }
+  .hero-title {
+    font-size: 20px; font-weight: 500; color: var(--emerald);
+    letter-spacing: 0.04em; margin-bottom: 24px;
+  }
+  .hero-tagline {
+    font-size: 15px; color: var(--mid); max-width: 520px;
+    line-height: 1.7; margin-bottom: 40px;
+    background: rgba(255,255,255,0.55); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.7);
+    padding: 14px 20px; border-radius: 10px;
+    border-left: 3px solid var(--emerald);
+  }
+
+  /* Contact pills */
+  .hero-contacts { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 36px; }
+  .contact-pill {
+    display: flex; flex-direction: column;
+    background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.9);
+    padding: 10px 18px; border-radius: 10px;
+  }
+  .contact-pill .label { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; color: var(--green); text-transform: uppercase; }
+  .contact-pill .value { font-size: 13px; font-weight: 700; color: var(--forest); }
+
+  /* Industry tags */
+  .hero-industries { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 64px; }
+  .ind-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: var(--mid); text-transform: uppercase; }
+  .ind-tag {
+    font-size: 11px; font-weight: 700; padding: 5px 14px; border-radius: 100px;
+    color: white; letter-spacing: 0.05em;
+  }
+
+  /* Hero stats bar */
+  .hero-stats-bar {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: var(--forest);
+    display: flex; align-items: stretch;
+    overflow: hidden;
+  }
+  .hs-item {
+    flex: 1; padding: 20px 24px; text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    position: relative; overflow: hidden;
+    transition: background 0.3s;
+  }
+  .hs-item:hover { background: rgba(255,255,255,0.05); }
+  .hs-item:last-child { border-right: none; }
+  .hs-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px; font-weight: 700; color: var(--sage);
+    display: block; line-height: 1;
+  }
+  .hs-lbl { font-size: 9px; font-weight: 600; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); text-transform: uppercase; margin-top: 4px; display: block; }
+
+  /* ── SECTION SHELL ──────────────────────────────────────────────── */
+  section { padding: 96px 64px; }
+  section:nth-child(even) { background: var(--pale); }
+
+  .sec-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 10px; font-weight: 800; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--green);
+    margin-bottom: 14px;
+  }
+  .sec-eyebrow::before {
+    content:''; display:block; width:28px; height:2px;
+    background: var(--green);
+  }
+  .sec-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 48px); font-weight: 700;
+    color: var(--forest); line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .sec-sub { font-size: 15px; color: var(--muted); max-width: 600px; line-height: 1.7; margin-bottom: 56px; }
+
+  /* ── WORK EXPERIENCE ────────────────────────────────────────────── */
+  .jobs { display: flex; flex-direction: column; gap: 32px; }
+  .job-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+    box-shadow: 0 2px 24px rgba(15,61,46,0.06);
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  .job-card:hover { box-shadow: 0 8px 40px rgba(15,61,46,0.12); transform: translateY(-2px); }
+  .job-header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    padding: 28px 32px 22px;
+    border-bottom: 1px solid var(--border);
+  }
+  .job-co-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--forest); margin-bottom: 4px;
+  }
+  .job-role { font-size: 13px; font-weight: 600; color: var(--green); }
+  .job-period {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600;
+    color: var(--muted); white-space: nowrap;
+    background: var(--pale); padding: 6px 12px; border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .job-body { padding: 28px 32px; }
+  .job-bullets {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px 32px;
+  }
+  .job-bullet {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13.5px; color: var(--mid); line-height: 1.5;
+  }
+  .job-bullet::before {
+    content: ''; flex-shrink: 0;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--sage); margin-top: 7px;
+  }
+
+  /* Brief engagements */
+  .brief-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-top: 20px; }
+  .brief-card {
+    padding: 18px 20px; border-radius: 12px;
+    font-size: 13px; font-weight: 700; color: white;
+    text-align: center; line-height: 1.4;
+  }
+
+  /* ── CAMPAIGN PERFORMANCE ───────────────────────────────────────── */
+  .metrics-section { margin-bottom: 56px; }
+  .metrics-label {
+    font-size: 11px; font-weight: 800; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 16px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .metrics-grid {
+    display: grid;
+    gap: 14px;
+  }
+  .metrics-grid.cols-5 { grid-template-columns: repeat(5,1fr); }
+  .metrics-grid.cols-4 { grid-template-columns: repeat(4,1fr); }
+  .metric-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    text-align: center;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .metric-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(15,61,46,0.1); }
+  .metric-top {
+    padding: 8px 12px 6px;
+    font-size: 9px; font-weight: 800; letter-spacing: 0.12em;
+    text-transform: uppercase; color: white;
+  }
+  .metric-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 700;
+    padding: 14px 8px 4px;
+    display: block; line-height: 1;
+  }
+  .metric-lbl {
+    font-size: 10px; font-weight: 600; color: var(--muted);
+    padding: 0 8px 16px; display: block; line-height: 1.4;
+  }
+
+  /* Campaign table */
+  .camp-table-wrap {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 20px rgba(15,61,46,0.05);
+  }
+  .camp-table-title {
+    padding: 16px 24px;
+    font-size: 12px; font-weight: 800; letter-spacing: 0.1em;
+    text-transform: uppercase; color: white;
+    background: var(--forest);
+  }
+  table { width: 100%; border-collapse: collapse; }
+  thead th {
+    background: var(--pale);
+    padding: 12px 14px;
+    font-size: 10px; font-weight: 800; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--mid);
+    text-align: center; border-bottom: 1px solid var(--border);
+  }
+  thead th:first-child { text-align: left; }
+  tbody tr { transition: background 0.15s; }
+  tbody tr:hover { background: var(--pale); }
+  tbody td {
+    padding: 13px 14px;
+    font-size: 12.5px; color: var(--ink);
+    border-bottom: 1px solid rgba(200,223,208,0.4);
+    text-align: center; vertical-align: middle;
+  }
+  tbody td:first-child { text-align: left; font-weight: 600; color: var(--forest); }
+  .td-badge {
+    display: inline-block; padding: 3px 10px; border-radius: 20px;
+    font-size: 11px; font-weight: 700;
+    background: var(--pale); color: var(--emerald);
+  }
+
+  /* ── ORGANIC GROWTH ─────────────────────────────────────────────── */
+  .platform-block { margin-bottom: 52px; }
+  .platform-header {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 20px;
+  }
+  .platform-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .platform-title { font-size: 16px; font-weight: 800; color: var(--forest); }
+  .platform-period { font-size: 11px; font-weight: 500; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+  .platform-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+  .pg-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px 16px;
+    text-align: center;
+    transition: transform 0.25s;
+  }
+  .pg-card:hover { transform: translateY(-3px); }
+  .pg-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; font-weight: 700;
+    display: block; margin-bottom: 4px;
+  }
+  .pg-lbl { font-size: 10px; font-weight: 600; color: var(--muted); letter-spacing: 0.04em; }
+
+  /* GBP note */
+  .gbp-note {
+    background: var(--gold-lt); border: 1px solid #E8C96A;
+    border-left: 4px solid var(--gold);
+    border-radius: 10px; padding: 14px 20px;
+    font-size: 13px; font-weight: 600; color: #7A5000;
+    margin-top: 16px;
+  }
+
+  /* ── CERTIFICATIONS ──────────────────────────────────────────────── */
+  .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .cert-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden;
+    box-shadow: 0 2px 20px rgba(15,61,46,0.06);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .cert-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(15,61,46,0.12); }
+  .cert-top { padding: 22px 26px 18px; display: flex; flex-direction: column; align-items: flex-start; }
+  .cert-star { font-size: 28px; }
+  .cert-name { font-size: 16px; font-weight: 800; color: var(--forest); margin-bottom: 6px; line-height: 1.3; }
+  .cert-org { font-size: 13px; font-weight: 600; color: var(--green); margin-bottom: 4px; }
+  .cert-meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+  .cert-footer { padding: 12px 26px; border-top: 1px solid var(--border); }
+  .cert-reg { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; color: var(--muted); }
+
+  /* ── SKILLS ──────────────────────────────────────────────────────── */
+  .skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+  .skill-group {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden;
+    box-shadow: 0 2px 16px rgba(15,61,46,0.05);
+  }
+  .skill-group-header {
+    padding: 16px 20px;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.12em;
+    text-transform: uppercase; color: white;
+  }
+  .skill-chips { padding: 16px 18px; display: flex; flex-wrap: wrap; gap: 7px; }
+  .chip {
+    font-size: 11.5px; font-weight: 600;
+    padding: 5px 13px; border-radius: 100px;
+    background: var(--pale); border: 1px solid var(--border);
+    color: var(--mid); transition: background 0.2s, color 0.2s, transform 0.2s;
+    cursor: default;
+  }
+  .chip:hover { transform: scale(1.04); }
+
+  /* ── PHILOSOPHY & SERVICES ───────────────────────────────────────── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .philosophy-box {
+    background: var(--forest); border-radius: 16px;
+    padding: 40px; color: white; position: relative; overflow: hidden;
+  }
+  .philosophy-box::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 160px; line-height: 1;
+    color: rgba(255,255,255,0.06);
+    position: absolute; top: -10px; left: 16px;
+    pointer-events: none;
+  }
+  .philosophy-text {
+    font-size: 15px; line-height: 1.85;
+    color: rgba(255,255,255,0.82); position: relative;
+  }
+  .services-list { display: flex; flex-direction: column; gap: 14px; }
+  .svc-item {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px 20px;
+    display: flex; align-items: flex-start; gap: 14px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .svc-item:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(15,61,46,0.08); }
+  .svc-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .svc-title { font-size: 13px; font-weight: 800; color: var(--forest); margin-bottom: 4px; }
+  .svc-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  /* ── CTA / FOOTER ────────────────────────────────────────────────── */
+  #contact {
+    background: linear-gradient(135deg, var(--forest) 0%, var(--emerald) 100%);
+    text-align: center; padding: 100px 64px;
+    position: relative; overflow: hidden;
+  }
+  #contact::before {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(82,183,136,0.15) 0%, transparent 60%);
+  }
+  .cta-eyebrow {
+    display: inline-block; font-size: 10px; font-weight: 800;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--sage); margin-bottom: 20px;
+  }
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 60px); font-weight: 700;
+    color: var(--white); line-height: 1.1; margin-bottom: 16px;
+  }
+  .cta-sub { font-size: 16px; color: rgba(255,255,255,0.65); margin-bottom: 48px; }
+  .cta-pills { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+  .cta-pill {
+    display: inline-flex; flex-direction: column; align-items: center;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(8px);
+    padding: 16px 28px; border-radius: 14px;
+    color: white; text-decoration: none;
+    transition: background 0.25s, transform 0.25s;
+  }
+  .cta-pill:hover { background: rgba(255,255,255,0.18); transform: translateY(-2px); }
+  .cta-pill .pl { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sage); margin-bottom: 3px; }
+  .cta-pill .pv { font-size: 15px; font-weight: 700; }
+  .whatsapp-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 16px;
+    background: #25D366;
+    color: white; text-decoration: none;
+    padding: 24px 56px; border-radius: 18px;
+    font-size: 24px; font-weight: 800; letter-spacing: 0.01em;
+    box-shadow: 0 8px 40px rgba(37,211,102,0.45), 0 2px 12px rgba(0,0,0,0.2);
+    transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+    position: relative; z-index: 1;
+  }
+  .whatsapp-btn:hover {
+    background: #1ebe5d;
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 16px 56px rgba(37,211,102,0.55), 0 4px 20px rgba(0,0,0,0.25);
+  }
+  .whatsapp-btn svg { width: 34px; height: 34px; flex-shrink: 0; }
+  footer {
+    background: var(--forest); text-align: center;
+    padding: 20px; font-size: 11px; color: rgba(255,255,255,0.35);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── EDUCATION ───────────────────────────────────────────────────── */
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .edu-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden;
+    box-shadow: 0 2px 20px rgba(15,61,46,0.05);
+  }
+  .edu-top { padding: 6px 0; }
+  .edu-body { padding: 24px 28px; }
+  .edu-degree { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; color: var(--forest); margin-bottom: 8px; line-height: 1.3; }
+  .edu-inst { font-size: 13px; font-weight: 700; color: var(--green); margin-bottom: 8px; }
+  .edu-detail { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+
+  /* ── HAMBURGER BUTTON ───────────────────────────────────────────── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 40px; height: 40px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px; cursor: pointer;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  .nav-hamburger:hover { background: rgba(255,255,255,0.15); }
+  .nav-hamburger span {
+    display: block; width: 20px; height: 2px;
+    background: white; border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile nav drawer */
+  .nav-drawer {
+    display: none;
+    position: fixed; top: 57px; left: 0; right: 0; z-index: 99;
+    background: rgba(15,61,46,0.98);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(82,183,136,0.2);
+    padding: 0;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+  }
+  .nav-drawer.open {
+    max-height: 320px;
+    padding: 12px 0 20px;
+  }
+  .nav-drawer a {
+    display: block; padding: 14px 24px;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.75); text-decoration: none;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: color 0.2s, background 0.2s;
+  }
+  .nav-drawer a:last-child { border-bottom: none; }
+  .nav-drawer a:hover { color: var(--sage); background: rgba(255,255,255,0.04); }
+
+  /* ── RESPONSIVE ──────────────────────────────────────────────────── */
+
+  /* ── Tablet (≤ 900px) ──────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    nav { padding: 10px 20px; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .nav-drawer { display: block; }
+
+    section { padding: 56px 20px; }
+    #hero { padding: 90px 20px 110px; }
+
+    .hero-name { font-size: clamp(38px, 10vw, 64px); white-space: normal; }
+    .hero-title { font-size: 16px; }
+    .hero-tagline { font-size: 14px; max-width: 100%; }
+    .hero-contacts { gap: 8px; }
+    .contact-pill { padding: 8px 14px; }
+    .hero-industries { gap: 7px; margin-bottom: 56px; }
+
+    /* Stats bar — horizontal scroll on mobile */
+    .hero-stats-bar {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .hero-stats-bar::-webkit-scrollbar { display: none; }
+    .hs-item { flex: 0 0 140px; padding: 16px 14px; }
+    .hs-val { font-size: 20px; }
+    .hs-lbl { font-size: 8px; }
+
+    .sec-title { font-size: clamp(24px, 6vw, 36px); }
+    .sec-sub { font-size: 14px; margin-bottom: 32px; }
+
+    /* Jobs */
+    .job-header { flex-direction: column; gap: 10px; padding: 20px 20px 16px; }
+    .job-period { align-self: flex-start; }
+    .job-body { padding: 20px; }
+    .job-bullets { grid-template-columns: 1fr; gap: 8px; }
+    .job-bullet { font-size: 13px; }
+    .brief-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    /* Metrics */
+    .metrics-grid.cols-5,
+    .metrics-grid.cols-4 { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .metric-val { font-size: 22px; }
+    .metrics-label { font-size: 10px; }
+
+    /* Tables — horizontal scroll */
+    .camp-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .camp-table-wrap table { min-width: 560px; }
+    thead th, tbody td { padding: 10px 10px; font-size: 11px; }
+
+    /* Organic growth */
+    .platform-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .pg-val { font-size: 20px; }
+
+    /* Certs */
+    .cert-grid { grid-template-columns: 1fr; gap: 16px; }
+
+    /* Skills */
+    .skills-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    /* Education + philosophy */
+    .edu-grid { grid-template-columns: 1fr; gap: 16px; }
+    .two-col { grid-template-columns: 1fr; gap: 24px; }
+    .philosophy-box { padding: 28px 24px; }
+
+    /* Contact */
+    #contact { padding: 72px 20px; }
+    .cta-title { font-size: clamp(28px, 7vw, 48px); }
+    .whatsapp-btn { font-size: 20px; padding: 20px 40px; width: 100%; max-width: 360px; }
+  }
+
+  /* ── Phone (≤ 480px) ───────────────────────────────────────────── */
+  @media (max-width: 480px) {
+    section { padding: 48px 16px; }
+    #hero { padding: 80px 16px 100px; }
+
+    .hero-tag { font-size: 9px; padding: 5px 12px; }
+    .hero-name { font-size: clamp(34px, 11vw, 52px); }
+    .hero-title { font-size: 14px; }
+    .hero-tagline { font-size: 13px; padding: 12px 16px; }
+    .hero-contacts { flex-direction: column; }
+    .contact-pill { width: 100%; }
+    .hero-industries { margin-bottom: 48px; }
+    .ind-tag { font-size: 10px; padding: 4px 10px; }
+
+    .hs-item { flex: 0 0 120px; padding: 14px 10px; }
+    .hs-val { font-size: 18px; }
+    .hs-lbl { font-size: 7.5px; }
+
+    /* Jobs */
+    .job-co-name { font-size: 18px; }
+    .job-role { font-size: 12px; }
+    .job-bullet { font-size: 12px; }
+    .brief-grid { grid-template-columns: 1fr; }
+    .brief-card { font-size: 12px; padding: 14px 16px; }
+
+    /* Metrics */
+    .metrics-grid.cols-5,
+    .metrics-grid.cols-4 { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .metric-val { font-size: 20px; padding: 10px 6px 3px; }
+    .metric-top { font-size: 8px; padding: 6px 8px 4px; }
+    .metric-lbl { font-size: 9px; padding: 0 6px 12px; }
+
+    /* Tables */
+    .camp-table-wrap table { min-width: 480px; }
+
+    /* Platform grids */
+    .platform-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .pg-card { padding: 14px 10px; }
+    .pg-val { font-size: 18px; }
+    .pg-lbl { font-size: 9px; }
+
+    /* Skills */
+    .skills-grid { grid-template-columns: 1fr; }
+    .skill-group-header { font-size: 10px; padding: 12px 16px; }
+    .chip { font-size: 11px; padding: 4px 10px; }
+
+    /* Cert card */
+    .cert-footer { flex-direction: column; gap: 8px; }
+
+    /* Edu */
+    .edu-degree { font-size: 16px; }
+    .edu-body { padding: 18px 20px; }
+
+    /* Philosophy */
+    .philosophy-box { padding: 24px 20px; }
+    .philosophy-text { font-size: 14px; }
+    .svc-title { font-size: 12px; }
+    .svc-desc { font-size: 11.5px; }
+    .svc-item { padding: 14px 16px; }
+
+    /* CTA */
+    #contact { padding: 56px 16px; }
+    .cta-title { font-size: clamp(24px, 8vw, 38px); }
+    .cta-sub { font-size: 14px; }
+    .whatsapp-btn { font-size: 18px; padding: 18px 28px; gap: 12px; }
+    .whatsapp-btn svg { width: 28px; height: 28px; }
+
+    footer { font-size: 10px; padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Arfat <span>Ahmad</span></div>
+  <div class="nav-links">
+    <a href="#experience">Experience</a>
+    <a href="#campaigns">Campaigns</a>
+    <a href="#growth">Growth</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-drawer" id="navDrawer">
+  <a href="#experience" onclick="closeDrawer()">Experience</a>
+  <a href="#campaigns" onclick="closeDrawer()">Campaigns</a>
+  <a href="#growth" onclick="closeDrawer()">Growth</a>
+  <a href="#skills" onclick="closeDrawer()">Skills</a>
+  <a href="#contact" onclick="closeDrawer()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-orb orb-1"></div>
+  <div class="hero-orb orb-2"></div>
+  <div class="hero-orb orb-3"></div>
+  <div class="hero-noise"></div>
+
+  <div class="hero-tag">Crescent Clicks · Digital Marketing</div>
+
+  <h1 class="hero-name">Arfat <em>Ahmad</em></h1>
+  <p class="hero-title">Digital Marketing Expert</p>
+  <p class="hero-tagline">Building marketing systems that turn impressions into qualified leads.</p>
+
+  <div class="hero-contacts">
+    <div class="contact-pill"><span class="label">WhatsApp</span><span class="value">+91 9086423573</span></div>
+    <div class="contact-pill"><span class="label">Location</span><span class="value">Srinagar, J&K - 190002</span></div>
+    <div class="contact-pill"><span class="label">Status</span><span class="value">✦ Available for Projects</span></div>
+  </div>
+
+  <div class="hero-industries">
+    <span class="ind-label">Specialises in:</span>
+    <span class="ind-tag" style="background:#0F3D2E">Travel & Tourism</span>
+    <span class="ind-tag" style="background:#1A6645">Healthcare</span>
+    <span class="ind-tag" style="background:#2D8653">E-commerce</span>
+    <span class="ind-tag" style="background:#0E8C7A">SaaS</span>
+    <span class="ind-tag" style="background:#1B6CA8">Real Estate</span>
+    <span class="ind-tag" style="background:#6B3FA0">EdTech</span>
+  </div>
+
+  <div class="hero-stats-bar">
+    <div class="hs-item"><span class="hs-val" data-count="48.6" data-prefix="Rs." data-suffix="L">Rs.48.6L</span><span class="hs-lbl">Revenue in 1 Month</span></div>
+    <div class="hs-item"><span class="hs-val">8,000+</span><span class="hs-lbl">Leads Generated</span></div>
+    <div class="hs-item"><span class="hs-val">631</span><span class="hs-lbl">Client Leads (25 Camps.)</span></div>
+    <div class="hs-item"><span class="hs-val">9.6%</span><span class="hs-lbl">Conversion Rate</span></div>
+    <div class="hs-item"><span class="hs-val">Rs.14.05</span><span class="hs-lbl">Best CPL Ever</span></div>
+    <div class="hs-item"><span class="hs-val">+16,000%</span><span class="hs-lbl">Instagram Growth</span></div>
+  </div>
+</section>
+
+<!-- PROFESSIONAL SUMMARY -->
+<section id="summary">
+  <div class="reveal">
+    <div class="sec-eyebrow">About</div>
+    <h2 class="sec-title">Professional Summary</h2>
+    <div style="background:var(--white);border:1px solid var(--border);border-left:4px solid var(--green);border-radius:12px;padding:28px 32px;font-size:15px;line-height:1.85;color:var(--mid);max-width:860px;">
+      Results-obsessed Digital Marketing Expert with hands-on experience in <strong style="color:var(--forest)">Travel & Tourism</strong> and <strong style="color:var(--forest)">Healthcare</strong>. Specialises in high-performance lead generation through <strong style="color:var(--forest)">Meta & Google Ads</strong>, Conversion Rate Optimisation (CRO), and data-driven campaign management with a laser focus on ROAS. Proven track record of generating <strong style="color:var(--green)">8,000+ leads</strong> and <strong style="color:var(--green)">Rs. 48.6 Lakh in revenue</strong> in a single month through strategic digital campaigns.
+    </div>
+  </div>
+</section>
+
+<!-- WORK EXPERIENCE -->
+<section id="experience">
+  <div class="reveal">
+    <div class="sec-eyebrow">Career</div>
+    <h2 class="sec-title">Work Experience</h2>
+    <p class="sec-sub">Full-cycle digital campaigns across Travel, Tourism & Healthcare — from ad creative to CRM.</p>
+  </div>
+
+  <div class="jobs">
+    <!-- Job 1 -->
+    <div class="job-card reveal">
+      <div class="job-header">
+        <div>
+          <div class="job-co-name">Travel & Tourism Agency <span style="font-weight:400;font-size:0.75em;opacity:0.7;">(name withheld by client request)</span></div>
+          <div class="job-role">Digital Marketer & Social Media Manager (Current Role)</div>
+        </div>
+        <div class="job-period">Apr 2025 – Present</div>
+      </div>
+      <div class="job-body">
+        <div class="job-bullets">
+          <div class="job-bullet">Generated 631+ leads across 25 Meta campaigns</div>
+          <div class="job-bullet">YouTube: 69,729 views, 84.3 hrs watch time</div>
+          <div class="job-bullet">Best CPL: Rs. 13.39 (Amarnath form campaign)</div>
+          <div class="job-bullet">GBP: 433 interactions, 70 calls, 48 chats</div>
+          <div class="job-bullet">Best CTR: 5.56% (Instagram post promotion)</div>
+          <div class="job-bullet">Built chatbot & marketing automation systems</div>
+          <div class="job-bullet">4.74% CTR on Amarnath form-lead campaign</div>
+          <div class="job-bullet">Managed social media: reels, carousels, posts</div>
+          <div class="job-bullet">Total ad spend: Rs. 56,831+</div>
+          <div class="job-bullet">Ran hiring campaigns & Instagram follower boosts</div>
+          <div class="job-bullet">Instagram: +8,000% reach, +16,000% followers</div>
+          <div class="job-bullet">Ran Local SEO via Google My Business</div>
+          <div class="job-bullet">Facebook visits: +189.7%, link clicks: +100%</div>
+          <div class="job-bullet">Managed email marketing campaigns</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Job 2 -->
+    <div class="job-card reveal">
+      <div class="job-header" style="border-left:4px solid var(--green);">
+        <div>
+          <div class="job-co-name">Tasha Tour & Travels</div>
+          <div class="job-role">In-House Marketing Manager</div>
+        </div>
+        <div class="job-period">Sep 2024 – Mar 2025</div>
+      </div>
+      <div class="job-body">
+        <div class="job-bullets">
+          <div class="job-bullet">Managed Rs. 1,00,000+ in Meta Ads spend</div>
+          <div class="job-bullet">510 leads processed, 9.6% conversion rate</div>
+          <div class="job-bullet">Generated 8,000+ leads at ~50 leads/day</div>
+          <div class="job-bullet">Google Ads Feb 2025: 28 conversions at Rs. 333 CPA</div>
+          <div class="job-bullet">Mar 2025: 706 leads at Rs. 40.38 CPL</div>
+          <div class="job-bullet">Google Ads: 4.41% CTR on Rs. 9,300 spend</div>
+          <div class="job-bullet">Mar 2025: 1,122 link clicks, Rs. 28,506 spend</div>
+          <div class="job-bullet">Integrated Sembark CRM for pipeline tracking</div>
+          <div class="job-bullet">Mar 2025: Rs. 48,63,540 revenue generated</div>
+          <div class="job-bullet">Built influencer collaboration pipeline</div>
+          <div class="job-bullet">Executed On-Page & Technical SEO</div>
+          <div class="job-bullet">Managed social media: reels, carousels, posts</div>
+          <div class="job-bullet">Optimised landing pages for conversion</div>
+          <div class="job-bullet">Managed online reputation & Local SEO (GBP)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Job 3 -->
+    <div class="job-card reveal">
+      <div class="job-header" style="border-left:4px solid var(--teal);">
+        <div>
+          <div class="job-co-name">Healthcare Sector — Clinics & Doctors</div>
+          <div class="job-role">Digital Marketing Consultant</div>
+        </div>
+        <div class="job-period">Freelance / Contract</div>
+      </div>
+      <div class="job-body">
+        <div class="job-bullets">
+          <div class="job-bullet">Managed Facebook Ads for clinics & doctors (lead gen & awareness)</div>
+          <div class="job-bullet">Created content, wrote copy & managed social media for healthcare/wellness brands</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Brief engagements -->
+    <div class="reveal" style="background:var(--white);border:1px solid var(--border);border-radius:16px;padding:28px 32px;">
+      <div style="font-size:12px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Brief Engagements — Travel Industry</div>
+      <div class="brief-grid">
+        <div class="brief-card" style="background:var(--forest)">Haniefa Tours & Travels</div>
+        <div class="brief-card" style="background:var(--green)">Adorable Tours & Travels</div>
+        <div class="brief-card" style="background:var(--blue)">Apple Tours & Travels</div>
+        <div class="brief-card" style="background:var(--purple)">Kralyari Tours & Travels</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPAIGN PERFORMANCE -->
+<section id="campaigns">
+  <div class="reveal">
+    <div class="sec-eyebrow">Paid Ads</div>
+    <h2 class="sec-title">Campaign Performance</h2>
+    <p class="sec-sub">Meta & Google Ads data across multiple clients — every rupee tracked.</p>
+  </div>
+
+  <!-- Tasha Meta -->
+  <div class="metrics-section reveal">
+    <div class="metrics-label">Tasha Tour & Travels — Meta Ads Snapshot (March 2025)</div>
+    <div class="metrics-grid cols-5">
+      <div class="metric-card"><div class="metric-top" style="background:var(--forest)">Facebook Leads</div><span class="metric-val" style="color:var(--forest)">706</span><span class="metric-lbl">Facebook Leads</span></div>
+      <div class="metric-card"><div class="metric-top" style="background:var(--green)">Cost Per Lead</div><span class="metric-val" style="color:var(--green)">Rs.40.38</span><span class="metric-lbl">Cost Per Lead</span></div>
+      <div class="metric-card"><div class="metric-top" style="background:var(--teal)">Link Clicks</div><span class="metric-val" style="color:var(--teal)">1,122</span><span class="metric-lbl">Link Clicks</span></div>
+      <div class="metric-card"><div class="metric-top" style="background:var(--blue)">Cost Per Click</div><span class="metric-val" style="color:var(--blue)">Rs.1.25</span><span class="metric-lbl">Cost Per Click</span></div>
+      <div class="metric-card"><div class="metric-top" style="background:var(--purple)">Ad Spend</div><span class="metric-val" style="color:var(--purple)">Rs.28,506</span><span class="metric-lbl">Ad Spend</span></div>
+    </div>
+  </div>
+
+  <!-- Tasha Google -->
+  <div class="metrics-section reveal">
+    <div class="metrics-label">Tasha Tour & Travels — Google Ads Snapshot (February 2025)</div>
+    <div class="metrics-grid cols-4">
+      <div class="metric-card"><div class="metric-top" style="background:var(--forest)">Conversions</div><span class="metric-val" style="color:var(--forest)">28</span><span class="metric-lbl">Total Conversions</span></div>
+      <div class="metric-card"><div class="metric-top" style="background:var(--blue)">CPA</div><span class="metric-val" style="color:var(--blue)">Rs.333</span><span class="metric-lbl">Cost Per Conversion (CPA)</span></div>
+      <div class="metric-card"><div class="metric-top" style="background:var(--teal)">CTR</div><span class="metric-val" style="color:var(--teal)">4.41%</span><span class="metric-lbl">Click-Through Rate</span></div>
+      <div class="metric-card"><div class="metric-top" style="background:var(--purple)">Spend</div><span class="metric-val" style="color:var(--purple)">Rs.9,300</span><span class="metric-lbl">Total Ad Spend</span></div>
+    </div>
+  </div>
+
+  <!-- Tasha Sales -->
+  <div class="metrics-section reveal">
+    <div class="metrics-label">Tasha Tour & Travels — Sales Performance (March 2025)</div>
+    <div class="metrics-grid cols-5">
+      <div class="metric-card"><div class="metric-top" style="background:var(--forest)">Total Leads</div><span class="metric-val" style="color:var(--forest)">510</span><span class="metric-lbl">Total Leads</span></div>
+      <div class="metric-card"><div class="metric-top" style="background:var(--green)">Quotes</div><span class="metric-val" style="color:var(--green)">1,627</span><span class="metric-lbl">Quotes Shared</span></div>
+      <div class="metric-card"><div class="metric-top" style="background:var(--teal)">Conversions</div><span class="metric-val" style="color:var(--teal)">49</span><span class="metric-lbl">Conversions</span></div>
+      <div class="metric-card"><div class="metric-top" style="background:var(--blue)">Conv. Rate</div><span class="metric-val" style="color:var(--blue)">9.6%</span><span class="metric-lbl">Conversion Rate</span></div>
+      <div class="metric-card"><div class="metric-top" style="background:var(--gold)">Revenue</div><span class="metric-val" style="color:var(--gold)">Rs.48.6L</span><span class="metric-lbl">Revenue Generated</span></div>
+    </div>
+  </div>
+
+  <!-- Kral Yari Meta -->
+  <div class="metrics-section reveal">
+    <div class="metrics-label">Kral Yari Tours and Travels — Meta Ads Snapshot (Feb 23–26, 2026)</div>
+    <div class="metrics-grid cols-5">
+      <div class="metric-card"><div class="metric-top" style="background:var(--forest)">Leads</div><span class="metric-val" style="color:var(--forest)">41</span><span class="metric-lbl">Leads Generated</span></div>
+      <div class="metric-card"><div class="metric-top" style="background:var(--green)">Cost Per Lead</div><span class="metric-val" style="color:var(--green)">Rs.24.63</span><span class="metric-lbl">Cost Per Lead</span></div>
+      <div class="metric-card"><div class="metric-top" style="background:var(--teal)">CTR</div><span class="metric-val" style="color:var(--teal)">1.23%</span><span class="metric-lbl">Click-Through Rate</span></div>
+      <div class="metric-card"><div class="metric-top" style="background:var(--blue)">CPC</div><span class="metric-val" style="color:var(--blue)">Rs.5.43</span><span class="metric-lbl">Cost Per Click</span></div>
+      <div class="metric-card"><div class="metric-top" style="background:var(--purple)">Ad Spend</div><span class="metric-val" style="color:var(--purple)">Rs.1,010</span><span class="metric-lbl">Ad Spend (4 days)</span></div>
+    </div>
+  </div>
+
+  <!-- Apple Tour B2B -->
+  <div class="metrics-section reveal">
+    <div class="metrics-label">Apple Tour and Travel — B2B Leads Campaign (30 Mar – 3 Apr, 2026)</div>
+    <div class="metrics-grid cols-5">
+      <div class="metric-card"><div class="metric-top" style="background:var(--forest)">Leads</div><span class="metric-val" style="color:var(--forest)">41</span><span class="metric-lbl">Leads Generated</span></div>
+      <div class="metric-card"><div class="metric-top" style="background:var(--green)">Cost Per Lead</div><span class="metric-val" style="color:var(--green)">Rs.17.92</span><span class="metric-lbl">Cost Per Lead</span></div>
+      <div class="metric-card"><div class="metric-top" style="background:var(--teal)">CTR</div><span class="metric-val" style="color:var(--teal)">4.63%</span><span class="metric-lbl">Click-Through Rate</span></div>
+      <div class="metric-card"><div class="metric-top" style="background:var(--blue)">CPC</div><span class="metric-val" style="color:var(--blue)">Rs.4.51</span><span class="metric-lbl">Cost Per Click</span></div>
+      <div class="metric-card"><div class="metric-top" style="background:var(--purple)">Ad Spend</div><span class="metric-val" style="color:var(--purple)">Rs.735</span><span class="metric-lbl">Ad Spend (5 days)</span></div>
+    </div>
+    <div class="camp-table-wrap" style="margin-top:16px;">
+      <div class="camp-table-title" style="background:var(--emerald)">Ad Set Breakdown — Lead Form vs WhatsApp</div>
+      <table>
+        <thead>
+          <tr><th>Ad Set</th><th>Spend</th><th>Leads</th><th>CPL</th><th>CPM</th><th>CPC</th><th>CTR</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Lead Form</td><td>Rs.467.91</td><td><strong>31</strong></td><td style="color:var(--teal);font-weight:800">Rs.15.09 ★</td><td>Rs.232.44</td><td>Rs.3.74</td><td><span class="td-badge" style="background:#D5F5E3;color:var(--teal)">6.21%</span></td></tr>
+          <tr><td>WhatsApp</td><td>Rs.266.82</td><td><strong>10</strong></td><td>Rs.26.68</td><td>Rs.176.94</td><td>Rs.7.02</td><td><span class="td-badge">2.52%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Client Campaigns Table -->
+  <div class="reveal">
+    <!-- Client Summary -->
+    <div class="metrics-section">
+      <div class="metrics-label">Travel & Tourism Client — Summary (25 Campaigns, Apr 2025–Jul 2026)</div>
+      <div class="metrics-grid cols-5">
+        <div class="metric-card"><div class="metric-top" style="background:var(--forest)">Total Leads</div><span class="metric-val" style="color:var(--forest)">631</span><span class="metric-lbl">Leads Generated</span></div>
+        <div class="metric-card"><div class="metric-top" style="background:var(--green)">Total Spend</div><span class="metric-val" style="color:var(--green)">Rs.56,831+</span><span class="metric-lbl">Total Ad Spend</span></div>
+        <div class="metric-card"><div class="metric-top" style="background:var(--teal)">Best CPL</div><span class="metric-val" style="color:var(--teal)">Rs.13.39</span><span class="metric-lbl">Best Cost Per Lead</span></div>
+        <div class="metric-card"><div class="metric-top" style="background:var(--blue)">Best CTR</div><span class="metric-val" style="color:var(--blue)">5.56%</span><span class="metric-lbl">Click-Through Rate</span></div>
+        <div class="metric-card"><div class="metric-top" style="background:var(--purple)">Max Reach</div><span class="metric-val" style="color:var(--purple)">61K+</span><span class="metric-lbl">Maximum Reach</span></div>
+      </div>
+    </div>
+
+    <div class="camp-table-wrap">
+      <div class="camp-table-title">Lead Campaigns</div>
+      <table>
+        <thead>
+          <tr><th>Campaign</th><th>Reach</th><th>Impressions</th><th>Spend</th><th>Clicks</th><th>CTR</th><th>Leads</th><th>CPL</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Leads | Arfat | 16 Oct 2025</td><td>61,237</td><td>92,541</td><td>Rs.5,649</td><td>2,077</td><td><span class="td-badge">2.24%</span></td><td><strong>328</strong></td><td>Rs.17.22</td></tr>
+          <tr><td>Leads | Ladakh Luxury | 29 Jul 2025</td><td>—</td><td>—</td><td>Rs.5,223</td><td>909</td><td><span class="td-badge">1.72%</span></td><td><strong>71</strong></td><td>Rs.73.57</td></tr>
+          <tr><td>Leads | Ladakh | 20 May 2025</td><td>18,330</td><td>21,908</td><td>Rs.2,072</td><td>415</td><td><span class="td-badge">1.89%</span></td><td><strong>53</strong></td><td>Rs.39.10</td></tr>
+          <tr><td>Leads | Amarnath | 03 May 2025</td><td>22,063</td><td>25,319</td><td>Rs.1,152</td><td>1,081</td><td><span class="td-badge" style="background:#D5F5E3;color:var(--teal)">4.27%</span></td><td><strong>82</strong></td><td>Rs.14.05</td></tr>
+          <tr><td>Leads (Form) | Amarnath | 17 Apr 2026</td><td>—</td><td>—</td><td>Rs.1,018</td><td>—</td><td><span class="td-badge" style="background:#D5F5E3;color:var(--teal)">4.74%</span></td><td><strong>76</strong></td><td style="color:var(--teal);font-weight:800">Rs.13.39 ★</td></tr>
+          <tr><td>Leads | Ladakh | 24 May 2025</td><td>2,507</td><td>—</td><td>Rs.375</td><td>73</td><td>—</td><td><strong>9</strong></td><td>Rs.41.70</td></tr>
+          <tr><td>Leads | Amarnath Quality Push | 06 May 2025</td><td>6,547</td><td>—</td><td>Rs.304</td><td>263</td><td><span class="td-badge">3.95%</span></td><td><strong>11</strong></td><td>Rs.27.71</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="camp-table-wrap" style="margin-top:20px;">
+      <div class="camp-table-title" style="background:var(--emerald)">Non-Lead Campaigns (Boost / Traffic / Post Promotions)</div>
+      <table>
+        <thead>
+          <tr><th>Campaign</th><th>Reach</th><th>Impressions</th><th>Spend</th><th>Clicks</th><th>CTR</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Instagram Boost (Kashmir 1)</td><td>19,838</td><td>23,636</td><td>Rs.804</td><td>317</td><td><span class="td-badge">1.34%</span></td></tr>
+          <tr><td>Traffic Campaign</td><td>7,317</td><td>10,331</td><td>Rs.334</td><td>265</td><td><span class="td-badge">2.57%</span></td></tr>
+          <tr><td>Traffic | On Reel | 06 Oct 2025</td><td>—</td><td>—</td><td>Rs.177</td><td>313</td><td><span class="td-badge">5.13%</span></td></tr>
+          <tr><td>Instagram Boost (Kashmir 2)</td><td>8,670</td><td>—</td><td>Rs.155</td><td>511</td><td><span class="td-badge" style="background:#D5F5E3;color:var(--teal)">5.56% ★</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ORGANIC GROWTH -->
+<section id="growth">
+  <div class="reveal">
+    <div class="sec-eyebrow">Organic</div>
+    <h2 class="sec-title">Organic Growth & Local SEO</h2>
+    <p class="sec-sub">Travel & Tourism Client — content-led growth across all major platforms.</p>
+  </div>
+
+  <!-- Instagram -->
+  <div class="platform-block reveal">
+    <div class="platform-header">
+      <div class="platform-icon" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">📸</div>
+      <div><div class="platform-title">Instagram — Travel & Tourism Client</div><div class="platform-period">Apr 2025 – Jun 2026</div></div>
+    </div>
+    <div class="platform-grid">
+      <div class="pg-card"><span class="pg-val" style="color:var(--forest)">581.3K</span><span class="pg-lbl">Total Views</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--green)">576.8K</span><span class="pg-lbl">Total Reach</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--teal)">18.4K</span><span class="pg-lbl">Content Interactions</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--blue)">3.7K</span><span class="pg-lbl">Link Clicks</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--purple)">+8,000%</span><span class="pg-lbl">Reach Growth</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--red)">11.2K</span><span class="pg-lbl">Profile Visits</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--emerald)">1.4K</span><span class="pg-lbl">New Followers</span></div>
+      <div class="pg-card" style="background:var(--forest)"><span class="pg-val" style="color:var(--sage)">+16,000%</span><span class="pg-lbl" style="color:rgba(255,255,255,0.6)">Follower Growth</span></div>
+    </div>
+  </div>
+
+  <!-- Facebook -->
+  <div class="platform-block reveal">
+    <div class="platform-header">
+      <div class="platform-icon" style="background:#1877F2">📘</div>
+      <div><div class="platform-title">Facebook — Travel & Tourism Client</div><div class="platform-period">Apr 2025 – Feb 2026</div></div>
+    </div>
+    <div class="platform-grid">
+      <div class="pg-card"><span class="pg-val" style="color:var(--forest)">436.2K</span><span class="pg-lbl">Total Views</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--green)">1.4K</span><span class="pg-lbl">Total Visits (+189.7%)</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--teal)">1.5K</span><span class="pg-lbl">Content Interactions</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--blue)">835</span><span class="pg-lbl">Link Clicks (+100%)</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--purple)">+189.7%</span><span class="pg-lbl">Visits Growth</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--red)">12.2%</span><span class="pg-lbl">Interactions Growth</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--teal)">+100%</span><span class="pg-lbl">Link Clicks Growth</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--emerald)">+350%</span><span class="pg-lbl">Followers Gained</span></div>
+    </div>
+  </div>
+
+  <!-- YouTube -->
+  <div class="platform-block reveal">
+    <div class="platform-header">
+      <div class="platform-icon" style="background:#FF0000">▶</div>
+      <div><div class="platform-title">YouTube Channel — Travel & Tourism Client</div><div class="platform-period">Apr 2025 – Feb 2026</div></div>
+    </div>
+    <div class="platform-grid">
+      <div class="pg-card"><span class="pg-val" style="color:var(--red)">69,729</span><span class="pg-lbl">Total Views</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--forest)">84.3 hrs</span><span class="pg-lbl">Watch Time</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--green)">19.4K</span><span class="pg-lbl">Engaged Views (28%)</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--teal)">2.9K</span><span class="pg-lbl">Monthly Audience</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--blue)">429</span><span class="pg-lbl">Total Likes</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--purple)">+24</span><span class="pg-lbl">Subscribers Gained</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--red)">560</span><span class="pg-lbl">Shorts Peak (1 Day)</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--emerald)">397</span><span class="pg-lbl">Views Last 48hrs</span></div>
+    </div>
+  </div>
+
+  <!-- GBP -->
+  <div class="platform-block reveal">
+    <div class="platform-header">
+      <div class="platform-icon" style="background:#4285F4">G</div>
+      <div><div class="platform-title">Google Business Profile — Local SEO</div><div class="platform-period">Sep 2025 – Feb 2026</div></div>
+    </div>
+    <div class="platform-grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="pg-card"><span class="pg-val" style="color:var(--forest)">433</span><span class="pg-lbl">Total Profile Interactions</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--teal)">70</span><span class="pg-lbl">Calls Received</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--purple)">48</span><span class="pg-lbl">Chat Clicks</span></div>
+      <div class="pg-card"><span class="pg-val" style="color:var(--gold)">93</span><span class="pg-lbl">Website Clicks</span></div>
+    </div>
+    <div class="gbp-note">⚡ Peak GBP engagement: Nov–Dec 2025 — strong seasonal discovery & high purchase intent period.</div>
+  </div>
+</section>
+
+<!-- SKILLS & CERTS -->
+<section id="skills">
+  <div class="reveal">
+    <div class="sec-eyebrow">Expertise</div>
+    <h2 class="sec-title">Certifications & Skills</h2>
+    <p class="sec-sub">Certified performance marketer with a full-stack digital skill set.</p>
+  </div>
+
+  <!-- Certs -->
+  <div class="cert-grid reveal" style="margin-bottom:48px;">
+    <div class="cert-card">
+      <div class="cert-top" style="background:linear-gradient(135deg,var(--forest),var(--emerald));padding:20px 26px;">
+        <div style="font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--sage);margin-bottom:10px;">Certification</div>
+        <div style="font-size:18px;font-weight:800;color:white;line-height:1.3;margin-bottom:6px;">Become a Performance Marketer in 2026</div>
+        <div style="font-size:13px;color:var(--mint);">WsCube Tech (Upskilling Bharat)</div>
+      </div>
+      <div class="cert-footer" style="display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div class="cert-reg">Issued: 11th February 2026</div>
+          <div class="cert-reg">Reg No: WS/2026/M/41117</div>
+        </div>
+        <div style="font-size:32px">★</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-top" style="background:linear-gradient(135deg,var(--emerald),var(--green));padding:20px 26px;">
+        <div style="font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--mint);margin-bottom:10px;">Certification</div>
+        <div style="font-size:18px;font-weight:800;color:white;line-height:1.3;margin-bottom:6px;">Become an Advanced AI Marketer in 2026</div>
+        <div style="font-size:13px;color:var(--mint);">WsCube Tech (Upskilling Bharat)</div>
+      </div>
+      <div class="cert-footer" style="display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div class="cert-reg">Issued: 9th March 2026</div>
+          <div class="cert-reg">Reg No: WS/2026/M/43653</div>
+        </div>
+        <div style="font-size:32px">★</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-top" style="background:linear-gradient(135deg,var(--green),var(--sage));padding:20px 26px;">
+        <div style="font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:10px;">Certification</div>
+        <div style="font-size:18px;font-weight:800;color:white;line-height:1.3;margin-bottom:6px;">Master Facebook Ads for D2C Brands</div>
+        <div style="font-size:13px;color:var(--mint);">WsCube Tech (Upskilling Bharat)</div>
+      </div>
+      <div class="cert-footer" style="display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div class="cert-reg">Issued: 19th May 2026</div>
+          <div class="cert-reg">Reg No: WS/2026/M/50599</div>
+        </div>
+        <div style="font-size:32px">★</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-top" style="background:linear-gradient(135deg,var(--teal),var(--blue));padding:20px 26px;">
+        <div style="font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--mint);margin-bottom:10px;">Certification</div>
+        <div style="font-size:18px;font-weight:800;color:white;line-height:1.3;margin-bottom:6px;">Become a Certified AI Professional in 2026</div>
+        <div style="font-size:13px;color:var(--mint);">WsCube Tech (Upskilling Bharat)</div>
+      </div>
+      <div class="cert-footer" style="display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div class="cert-reg">Issued: 25th June 2026</div>
+          <div class="cert-reg">Reg No: WS/2026/M/53700</div>
+        </div>
+        <div style="font-size:32px">★</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-top" style="background:linear-gradient(135deg,var(--gold),#B8790A);padding:20px 26px;">
+        <div style="font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:10px;">Certification · Latest</div>
+        <div style="font-size:18px;font-weight:800;color:white;line-height:1.3;margin-bottom:6px;">Become a High-Paid Performance Marketer</div>
+        <div style="font-size:13px;color:var(--gold-lt);">WsCube Tech (Upskilling Bharat)</div>
+      </div>
+      <div class="cert-footer" style="display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div class="cert-reg">Issued: 10th July 2026</div>
+          <div class="cert-reg">Reg No: WS/2026/M/55987</div>
+        </div>
+        <div style="font-size:32px">★</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Skills -->
+  <div class="skills-grid reveal">
+    <div class="skill-group">
+      <div class="skill-group-header" style="background:var(--forest)">Paid Advertising & PPC</div>
+      <div class="skill-chips">
+        <span class="chip" style="border-color:var(--forest);color:var(--forest)">Meta Ads</span>
+        <span class="chip" style="border-color:var(--forest);color:var(--forest)">Google Ads</span>
+        <span class="chip" style="border-color:var(--forest);color:var(--forest)">Lead Generation</span>
+        <span class="chip" style="border-color:var(--forest);color:var(--forest)">Campaign Optimisation</span>
+        <span class="chip" style="border-color:var(--forest);color:var(--forest)">A/B Testing</span>
+        <span class="chip" style="border-color:var(--forest);color:var(--forest)">Funnel Building</span>
+        <span class="chip" style="border-color:var(--forest);color:var(--forest)">Copywriting</span>
+        <span class="chip" style="border-color:var(--forest);color:var(--forest)">Offer Building</span>
+        <span class="chip" style="border-color:var(--forest);color:var(--forest)">Competitor Analysis</span>
+        <span class="chip" style="border-color:var(--forest);color:var(--forest)">Audience Psychology</span>
+        <span class="chip" style="border-color:var(--forest);color:var(--forest)">ROAS</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-header" style="background:var(--green)">Social Media Marketing</div>
+      <div class="skill-chips">
+        <span class="chip" style="border-color:var(--green);color:var(--green)">Facebook</span>
+        <span class="chip" style="border-color:var(--green);color:var(--green)">Instagram</span>
+        <span class="chip" style="border-color:var(--green);color:var(--green)">YouTube</span>
+        <span class="chip" style="border-color:var(--green);color:var(--green)">LinkedIn</span>
+        <span class="chip" style="border-color:var(--green);color:var(--green)">Twitter</span>
+        <span class="chip" style="border-color:var(--green);color:var(--green)">Snapchat</span>
+        <span class="chip" style="border-color:var(--green);color:var(--green)">Pinterest</span>
+        <span class="chip" style="border-color:var(--green);color:var(--green)">Algorithm Knowledge</span>
+        <span class="chip" style="border-color:var(--green);color:var(--green)">Hook Writing</span>
+        <span class="chip" style="border-color:var(--green);color:var(--green)">Reel Editing</span>
+        <span class="chip" style="border-color:var(--green);color:var(--green)">Content Calendar</span>
+        <span class="chip" style="border-color:var(--green);color:var(--green)">Engagement Building</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-header" style="background:var(--teal)">SEO | AEO | GEO</div>
+      <div class="skill-chips">
+        <span class="chip" style="border-color:var(--teal);color:var(--teal)">On-Page SEO</span>
+        <span class="chip" style="border-color:var(--teal);color:var(--teal)">Off-Page SEO</span>
+        <span class="chip" style="border-color:var(--teal);color:var(--teal)">Technical SEO</span>
+        <span class="chip" style="border-color:var(--teal);color:var(--teal)">Keyword Research</span>
+        <span class="chip" style="border-color:var(--teal);color:var(--teal)">Link Building</span>
+        <span class="chip" style="border-color:var(--teal);color:var(--teal)">AI-Friendly Content</span>
+        <span class="chip" style="border-color:var(--teal);color:var(--teal)">SEO Tools</span>
+        <span class="chip" style="border-color:var(--teal);color:var(--teal)">Google My Business</span>
+        <span class="chip" style="border-color:var(--teal);color:var(--teal)">Analytics</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-header" style="background:var(--blue)">Email & Automation</div>
+      <div class="skill-chips">
+        <span class="chip" style="border-color:var(--blue);color:var(--blue)">Email Marketing</span>
+        <span class="chip" style="border-color:var(--blue);color:var(--blue)">Template Creation</span>
+        <span class="chip" style="border-color:var(--blue);color:var(--blue)">Domain Authentication</span>
+        <span class="chip" style="border-color:var(--blue);color:var(--blue)">Campaign Management</span>
+        <span class="chip" style="border-color:var(--blue);color:var(--blue)">Chatbot Building</span>
+        <span class="chip" style="border-color:var(--blue);color:var(--blue)">Marketing Automation</span>
+        <span class="chip" style="border-color:var(--blue);color:var(--blue)">Funnel Building</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-header" style="background:var(--purple)">Tools & Platforms</div>
+      <div class="skill-chips">
+        <span class="chip" style="border-color:var(--purple);color:var(--purple)">Meta Business Suite</span>
+        <span class="chip" style="border-color:var(--purple);color:var(--purple)">Meta Ads Manager</span>
+        <span class="chip" style="border-color:var(--purple);color:var(--purple)">Google AdSense</span>
+        <span class="chip" style="border-color:var(--purple);color:var(--purple)">Canva</span>
+        <span class="chip" style="border-color:var(--purple);color:var(--purple)">ChatGPT</span>
+        <span class="chip" style="border-color:var(--purple);color:var(--purple)">Claude AI</span>
+        <span class="chip" style="border-color:var(--purple);color:var(--purple)">Manus AI</span>
+        <span class="chip" style="border-color:var(--purple);color:var(--purple)">WordPress</span>
+        <span class="chip" style="border-color:var(--purple);color:var(--purple)">Elementor</span>
+        <span class="chip" style="border-color:var(--purple);color:var(--purple)">Ubersuggest</span>
+        <span class="chip" style="border-color:var(--purple);color:var(--purple)">Sembark CRM</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-header" style="background:var(--gold)">Strategy & Analytics</div>
+      <div class="skill-chips">
+        <span class="chip" style="border-color:var(--gold);color:var(--gold)">CRO</span>
+        <span class="chip" style="border-color:var(--gold);color:var(--gold)">ROAS Optimisation</span>
+        <span class="chip" style="border-color:var(--gold);color:var(--gold)">Marketing Strategy</span>
+        <span class="chip" style="border-color:var(--gold);color:var(--gold)">Influencer Pipeline</span>
+        <span class="chip" style="border-color:var(--gold);color:var(--gold)">Reputation Management</span>
+        <span class="chip" style="border-color:var(--gold);color:var(--gold)">Local SEO</span>
+        <span class="chip" style="border-color:var(--gold);color:var(--gold)">Insights & Analytics</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION + PHILOSOPHY + SERVICES -->
+<section id="about">
+  <div class="reveal">
+    <div class="sec-eyebrow">Background</div>
+    <h2 class="sec-title">Education</h2>
+  </div>
+  <div class="edu-grid reveal" style="margin-bottom:72px;">
+    <div class="edu-card">
+      <div class="edu-top" style="height:6px;background:linear-gradient(90deg,var(--forest),var(--green));"></div>
+      <div class="edu-body">
+        <div class="edu-degree">Graduation — Bachelor's Degree</div>
+        <div class="edu-inst">University of Kashmir, Faculty of Alternative Medicine</div>
+        <div class="edu-detail">1st Division · 65% Aggregate · Year of Completion: 2023</div>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-top" style="height:6px;background:linear-gradient(90deg,var(--emerald),var(--sage));"></div>
+      <div class="edu-body">
+        <div class="edu-degree">Higher Secondary Education (10+2)</div>
+        <div class="edu-inst">M.P.M.L Higher Secondary School</div>
+        <div class="edu-detail">1st Division · 64% Aggregate · Year of Completion: 2012</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col reveal">
+    <div class="philosophy-box">
+      <div style="font-size:10px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--sage);margin-bottom:20px;">Philosophy</div>
+      <p class="philosophy-text">Every rupee spent on advertising must earn its place. My approach is rooted in data — reading the numbers, understanding audience psychology, and scaling what works. From generating 8,000+ leads for a travel company to driving Rs. 48.6 Lakh in a single month's revenue, I build marketing systems that create real, measurable business outcomes.</p>
+    </div>
+    <div class="services-list">
+      <div class="svc-item"><div class="svc-icon">🎯</div><div><div class="svc-title">Meta & Google Ads</div><div class="svc-desc">High-performance campaigns built to generate qualified leads at the lowest cost, with relentless A/B testing.</div></div></div>
+      <div class="svc-item"><div class="svc-icon">📈</div><div><div class="svc-title">Social Media Growth</div><div class="svc-desc">Organic strategy that achieved +16,000% follower growth — reels, hooks, carousels & consistency.</div></div></div>
+      <div class="svc-item"><div class="svc-icon">🔄</div><div><div class="svc-title">Lead Generation Systems</div><div class="svc-desc">End-to-end funnel from ad creative to landing page to CRM integration.</div></div></div>
+      <div class="svc-item"><div class="svc-icon">🔍</div><div><div class="svc-title">SEO & Local Visibility</div><div class="svc-desc">On-page, Technical & Local SEO plus Google Business Profile management for discovery.</div></div></div>
+      <div class="svc-item"><div class="svc-icon">⚡</div><div><div class="svc-title">Marketing Automation</div><div class="svc-desc">Chatbot systems & email sequences that nurture leads around the clock.</div></div></div>
+      <div class="svc-item"><div class="svc-icon">📊</div><div><div class="svc-title">CRO & Analytics</div><div class="svc-desc">Data-driven landing page optimisation and campaign analysis to maximise every conversion.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="cta-eyebrow">Let's work together</div>
+  <h2 class="cta-title">Ready to Turn Impressions<br>into Qualified Leads?</h2>
+  <p class="cta-sub">Let's talk about your next campaign.</p>
+  <a href="https://wa.me/919086423573" class="whatsapp-btn" target="_blank" rel="noopener">
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 2C8.268 2 2 8.268 2 16c0 2.478.666 4.8 1.828 6.8L2 30l7.4-1.8A13.93 13.93 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2z" fill="white" fill-opacity="0.25"/>
+      <path d="M22.5 19.5c-.3-.15-1.8-.9-2.1-1-.3-.1-.5-.15-.7.15-.2.3-.8 1-.95 1.2-.18.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.8-1.67-2.1-.18-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.7-1.7-.96-2.32-.25-.6-.5-.52-.7-.53h-.6c-.2 0-.52.07-.8.37-.27.3-1.02 1-1.02 2.44s1.05 2.83 1.2 3.03c.15.2 2.06 3.15 5 4.42.7.3 1.25.48 1.67.62.7.22 1.34.19 1.84.11.56-.08 1.8-.73 2.05-1.44.25-.7.25-1.3.18-1.43-.07-.12-.27-.2-.57-.34z" fill="white"/>
+    </svg>
+    WhatsApp Me
+  </a>
+</section>
+
+<footer>Arfat Ahmad · Crescent Clicks · Digital Marketing Expert · Srinagar, J&K</footer>
+
+<script>
+// ── Hamburger menu ───────────────────────────────────────────────────────────
+const hamburger = document.getElementById('hamburger');
+const navDrawer = document.getElementById('navDrawer');
+function closeDrawer() {
+  hamburger.classList.remove('open');
+  navDrawer.classList.remove('open');
+}
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  navDrawer.classList.toggle('open');
+});
+// Close drawer when clicking outside
+document.addEventListener('click', (e) => {
+  if (!hamburger.contains(e.target) && !navDrawer.contains(e.target)) {
+    closeDrawer();
+  }
+});
+
+// ── Scroll reveal ────────────────────────────────────────────────────────────
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => observer.observe(el));
+
+// ── Chip hover color fill ────────────────────────────────────────────────────
+document.querySelectorAll('.chip').forEach(chip => {
+  const col = chip.style.color;
+  chip.addEventListener('mouseenter', () => {
+    chip.style.background = col;
+    chip.style.color = 'white';
+    chip.style.borderColor = col;
+  });
+  chip.addEventListener('mouseleave', () => {
+    chip.style.background = '';
+    chip.style.color = col;
+    chip.style.borderColor = col;
+  });
+});
+
+// ── Active nav link ──────────────────────────────────────────────────────────
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current
+      ? 'var(--sage)' : '';
+  });
+}, { passive: true });
+</script>
+</body>
+</html>
